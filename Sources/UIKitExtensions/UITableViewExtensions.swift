@@ -17,4 +17,19 @@ public extension UITableView {
         }
         fatalError("can not dequeue cell with identifier \(T.identifier) from tableView \(self)")
     }
+    
+    func registerCell<Cell: UITableViewCell>(_ cellClass: Cell.Type){
+        register(cellClass, forCellReuseIdentifier: cellClass.identifier)
+    }
+    
+    func registerHeaderOrFooter<View: UITableViewHeaderFooterView>(_ ViewClass: View.Type){
+        register(ViewClass, forHeaderFooterViewReuseIdentifier: ViewClass.identifier)
+    }
+    
+    func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(with type: T.Type) -> T {
+        guard let headerFooterView = dequeueReusableHeaderFooterView(withIdentifier: String(describing: type)) as? T else {
+            fatalError("Couldn't find UITableViewHeaderFooterView for \(String(describing: type))")
+        }
+        return headerFooterView
+    }
 }
