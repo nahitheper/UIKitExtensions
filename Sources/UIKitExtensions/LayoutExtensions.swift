@@ -72,6 +72,17 @@ public extension UIView {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
     }
+    
+    func sizeAnchor(_ size: CGFloat? = nil) {
+        translatesAutoresizingMaskIntoConstraints = false
+        if let width = size {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+
+        if let height = size {
+            heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+    }
 
     func sizeAnchor(width: CGFloat? = nil, height: CGFloat? = nil) {
         translatesAutoresizingMaskIntoConstraints = false
